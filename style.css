@@ -1,0 +1,52 @@
+body {
+			font-size: 35px;
+		}
+		table {
+			border: 3px solid black;
+			border-collapse: collapse;
+			height: 600px;
+			width: 600px;
+			margin: 0 auto;
+			margin-top: 20px;
+		}
+
+		td {
+			border: 1px solid black;
+			text-align: center;
+
+		}
+
+		tr:nth-child(3) {
+			border-bottom: 3px solid black;
+		}
+
+		tr:nth-child(6) {
+			border-bottom: 3px solid black;
+		}
+
+		td:nth-child(3) {
+			border-right: 3px solid black;
+		}
+
+		td:nth-child(6) {
+			border-right: 3px solid black;
+		}
+
+		.input-text {
+			width: 66.66px;
+			height: 66.66px;
+			border: none;
+
+		}
+
+		input {
+			text-align: center;
+		}
+
+		.board-buttons {
+			margin-top: 30px;
+		}
+		.difficulty {
+			font-size: 20px;
+			margin-top: 30px; 
+		}
