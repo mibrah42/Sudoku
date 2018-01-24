@@ -18,7 +18,7 @@
 			height: 600px;
 			width: 600px;
 			margin: 0 auto;
-			margin-top: 50px;
+			margin-top: 20px;
 		}
 
 		td {
@@ -50,14 +50,32 @@
 
 		}
 
+		input {
+			text-align: center;
+		}
+
+		.board-buttons {
+			margin-top: 30px;
+		}
+		.difficulty {
+			font-size: 20px;
+			margin-top: 30px; 
+		}
+
 
 	</style>
-
-
 	
+	<h1 class="text-center">BrightSudoku</h1>
+	<h2 class="text-center">03:15</h2>
+	
+	<div class="difficulty text-center">
+		<input name="difficulty" type="radio" checked> Easy
+		<input name="difficulty" style="margin-left: 10px;" type="radio"> Medium
+		<input name="difficulty" style="margin-left: 10px;" type="radio"> Hard
+	</div>
 	<table>
 		<tr>
-			<td><input  type="text" min="1" max="9" class ="input-text" maxlength="1" ></td>
+			<td id><input  type="text" min="1" max="9" class ="input-text" maxlength="1" ></td>
 			<td><input  type="text" min="1" max="9" class ="input-text" maxlength="1" ></td>
 			<td><input  type="text" min="1" max="9" class ="input-text" maxlength="1" ></td>
 			<td><input  type="text" min="1" max="9" class ="input-text" maxlength="1" ></td>
@@ -156,8 +174,15 @@
 			<td><input  type="text" min="1" max="9" class ="input-text" maxlength="1" ></td>
 		</tr>
 	</table>
+	
+	<div class="board-buttons text-center">
+		<button class="btn btn-primary">New Board</button>
+		<button class="btn btn-danger">Give-up?</button>
+		<button class="btn btn-warning">Hint</button>
+		<button class="btn btn-success">Submit</button>
+		<button class="btn btn-primary">Clear</button>
 
-	<button class="btn btn-primary text-center">New Board</button>
+	</div>
 
 
 	
