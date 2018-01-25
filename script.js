@@ -28,14 +28,17 @@ var puzzles = {
 }
 
 
-function populateSudoku(){
+function populateSudoku(puzzle = "puzzle_1"){
   for(var i = 0; i < 9; i++){
     for(var j = 0; j < 9; j++){
       var cell = document.getElementById(i + "-" + j);
+      var input = cell.getElementsByClassName("input-text")[0];
+      
       if (puzzles.puzzle_1.puzzle[i][j] != 0) {
-        cell.innerHTML = puzzles["puzzle_1"]["puzzle"][i][j];
+        input.value = puzzles[puzzle]["puzzle"][i][j];
+        input.readOnly = true;
       } else {
-        var input = cell.getElementsByClassName("input-text")[0];
+        
         input.value = "";
         cell.style.color = "blue";
       }
@@ -43,5 +46,15 @@ function populateSudoku(){
   }
 }
 
+function showSolution(puzzle = "puzzle_1"){
+  for(var i = 0; i < 9; i++){
+    for(var j = 0; j < 9; j++){
+      var cell = document.getElementById(i + "-" + j);
+      var input = cell.getElementsByClassName("input-text")[0];
+      input.value = puzzles[puzzle]["solution"][i][j];
+    }
+  }
+}
+
 console.log("javascript working")
-populateSudoku()
+populateSudoku("puzzle_1")
