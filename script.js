@@ -55,17 +55,25 @@ function showSolution(puzzle = "puzzle_1"){
 }
 
 function checkSolution(puzzle = "puzzle_1"){
+  counter = 0
   for(var i = 0; i < 9; i++){
     for(var j = 0; j < 9; j++){
       var cell = document.getElementById(i + "-" + j);
       var input = cell.getElementsByClassName("input-text")[0];
       if (puzzles[puzzle]["solution"][i][j] != parseInt(input.value)){
-        alert("Your solution is incorrect!")
-        return;
+        counter += 1;
+        input.style.backgroundColor = "#F12E45";
+      } else {
+        input.style.backgroundColor = "white";
       }
     }
   }
-  alert("Your solution is correct");
+
+  if (counter > 0){
+    alert("Your solution is incorrect!");
+  } else {
+    alert("Your solution is correct!");
+  }
 }
 
 console.log("javascript working")
