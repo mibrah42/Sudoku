@@ -61,9 +61,11 @@ function checkSolution(puzzle = "puzzle_1"){
     for(var j = 0; j < 9; j++){
       var cell = document.getElementById(i + "-" + j);
       var input = cell.getElementsByClassName("input-text")[0];
-      if (puzzles[puzzle]["solution"][i][j] != parseInt(input.value)){
+      if (puzzles[puzzle]["solution"][i][j] != parseInt(input.value) ){
         counter += 1;
-        input.style.backgroundColor = "#E26A6A";
+        if (input.value != ""){
+        	input.style.backgroundColor = "#E26A6A";
+        }
         // input.style.backgroundColor = "#F12E45";
       } else {
         input.style.backgroundColor = "white";
