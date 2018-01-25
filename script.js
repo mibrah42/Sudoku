@@ -33,12 +33,10 @@ function populateSudoku(puzzle = "puzzle_1"){
     for(var j = 0; j < 9; j++){
       var cell = document.getElementById(i + "-" + j);
       var input = cell.getElementsByClassName("input-text")[0];
-      
-      if (puzzles.puzzle_1.puzzle[i][j] != 0) {
+      if (puzzles[puzzle]["puzzle"][i][j] != 0) {
         input.value = puzzles[puzzle]["puzzle"][i][j];
         input.readOnly = true;
       } else {
-        
         input.value = "";
         cell.style.color = "blue";
       }
@@ -54,6 +52,20 @@ function showSolution(puzzle = "puzzle_1"){
       input.value = puzzles[puzzle]["solution"][i][j];
     }
   }
+}
+
+function checkSolution(puzzle = "puzzle_1"){
+  for(var i = 0; i < 9; i++){
+    for(var j = 0; j < 9; j++){
+      var cell = document.getElementById(i + "-" + j);
+      var input = cell.getElementsByClassName("input-text")[0];
+      if (puzzles[puzzle]["solution"][i][j] != parseInt(input.value)){
+        alert("Your solution is incorrect!")
+        return;
+      }
+    }
+  }
+  alert("Your solution is correct");
 }
 
 console.log("javascript working")
