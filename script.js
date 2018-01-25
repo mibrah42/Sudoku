@@ -38,7 +38,7 @@ function populateSudoku(puzzle = "puzzle_1"){
         input.readOnly = true;
       } else {
         input.value = "";
-        cell.style.color = "blue";
+        cell.style.color = "#74D3BB";
       }
     }
   }
