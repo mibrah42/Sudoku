@@ -48,7 +48,7 @@ td:nth-child(3n) {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: 600px;
+	width: 800px;
 	margin: 30px auto;
 }
 
@@ -82,7 +82,7 @@ td:nth-child(3n) {
 	color: black;
 	font-size: 1.6rem;
 	height: 30px;
-	width: 100px;
+	width: 150px;
 	border: none;
 
 }

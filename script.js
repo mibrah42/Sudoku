@@ -50,6 +50,7 @@ function showSolution(puzzle = "puzzle_1"){
       var cell = document.getElementById(i + "-" + j);
       var input = cell.getElementsByClassName("input-text")[0];
       input.value = puzzles[puzzle]["solution"][i][j];
+      input.style.backgroundColor = "white";
     }
   }
 }
@@ -62,7 +63,8 @@ function checkSolution(puzzle = "puzzle_1"){
       var input = cell.getElementsByClassName("input-text")[0];
       if (puzzles[puzzle]["solution"][i][j] != parseInt(input.value)){
         counter += 1;
-        input.style.backgroundColor = "#F12E45";
+        input.style.backgroundColor = "#E26A6A";
+        // input.style.backgroundColor = "#F12E45";
       } else {
         input.style.backgroundColor = "white";
       }
