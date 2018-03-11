@@ -7,6 +7,15 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 
+#modal-view{
+	background-color: #394152;
+	border-radius: 5px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 2rem;
+	width: 550px;
+	font-weight: 100;
+}
+
 table {
 	border: 3px solid black;
 	border-collapse: collapse;
@@ -49,7 +58,8 @@ td:nth-child(3n) {
 	justify-content: space-between;
 	align-items: center;
 	width: 800px;
-	margin: 30px auto;
+	margin: 30px auto 0px auto;
+
 }
 
 .board-buttons a {

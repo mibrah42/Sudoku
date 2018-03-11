@@ -1,75 +1,73 @@
-var puzzles = {
-    
-    "puzzle_1": {
-        "difficulty": "medium",
-        "puzzle": [
-          [0, 3, 0, 0, 0, 0, 0, 5, 0],
-          [0, 0, 8, 0, 9, 1, 3, 0, 0],
-          [6, 0, 0, 4, 0, 0, 7, 0, 0],
-          [0, 0, 3, 8, 1, 0, 0, 0, 0],
-          [0, 0, 6, 0, 0, 0, 2, 0, 0],
-          [0, 0, 0, 0, 3, 4, 8, 0, 0],
-          [0, 0, 1, 0, 0, 8, 0, 0, 9],
-          [0, 0, 4, 1, 2, 0, 6, 0, 0],
-          [0, 6, 0, 0, 0, 0, 0, 4, 0]
-        ],
-        "solution": [
-          [1, 3, 9, 7, 6, 2, 4, 5, 8],
-          [7, 4, 8, 5, 9, 1, 3, 2, 6],
-          [6, 5, 2, 4, 8, 3, 7, 9, 1],
-          [5, 2, 3, 8, 1, 6, 9, 7, 4],
-          [4, 8, 6, 9, 5, 7, 2, 1, 3],
-          [9, 1, 7, 2, 3, 4, 8, 6, 5],
-          [2, 7, 1, 6, 4, 8, 5, 3, 9],
-          [3, 9, 4, 1, 2, 5, 6, 8, 7],
-          [8, 6, 5, 3, 7, 9, 1, 4, 2]
-        ],
-      }
+var solvedPuzzle;
+
+function startNewPuzzle(){
+  $('#chooseDifficulty > input').each(function () {
+    if (this.checked){
+      console.log(this.value)
+      var difficulty = this.value
+      $.ajax({
+        url: "https://sugoku.herokuapp.com/board?difficulty=" + difficulty,
+        dataType: 'json',
+        success: function(puzzle){
+          // console.log(puzzle);
+          solve(puzzle)  
+        }
+      });
+    } 
+  });
 }
 
+function solve(puzzle){
+   var data = {
+    board: JSON.stringify(puzzle["board"])
+  }
 
-function populateSudoku(puzzle = "puzzle_1"){
+  $.post('https://sugoku.herokuapp.com/solve', data)
+    .done(function (solution) {
+      // console.log(solution)
+      solvedPuzzle = solution;
+      populateSudoku(puzzle);
+
+    });``
+}
+
+startNewPuzzle()
+
+function populateSudoku(puzzle){
+  console.log(solvedPuzzle)
   for(var i = 0; i < 9; i++){
     for(var j = 0; j < 9; j++){
       var cell = document.getElementById(i + "-" + j);
       var input = cell.getElementsByClassName("input-text")[0];
-      if (puzzles[puzzle]["puzzle"][i][j] != 0) {
-        input.value = puzzles[puzzle]["puzzle"][i][j];
+      if(puzzle["board"][i][j] != 0 ){
+        cell.style.color = "#000000";
+        input.value = puzzle["board"][i][j];
         input.readOnly = true;
       } else {
         input.value = "";
+        input.readOnly = false;
         cell.style.color = "#74D3BB";
       }
     }
   }
 }
 
-function showSolution(puzzle = "puzzle_1"){
-  for(var i = 0; i < 9; i++){
-    for(var j = 0; j < 9; j++){
-      var cell = document.getElementById(i + "-" + j);
-      var input = cell.getElementsByClassName("input-text")[0];
-      input.value = puzzles[puzzle]["solution"][i][j];
-      input.style.backgroundColor = "white";
-    }
-  }
-}
 
-function checkSolution(puzzle = "puzzle_1"){
+function checkSolution(){
   counter = 0
   for(var i = 0; i < 9; i++){
     for(var j = 0; j < 9; j++){
       var cell = document.getElementById(i + "-" + j);
       var input = cell.getElementsByClassName("input-text")[0];
-      if (puzzles[puzzle]["solution"][i][j] != parseInt(input.value) ){
+      if (solvedPuzzle["solution"][i][j] != parseInt(input.value) ){
         counter += 1;
-        if (input.value != ""){
-        	input.style.backgroundColor = "#E26A6A";
-        }
+        // if (input.value != ""){
+        // 	// input.style.backgroundColor = "#E26A6A";
+        // }
         // input.style.backgroundColor = "#F12E45";
-      } else {
-        input.style.backgroundColor = "white";
-      }
+      } 
+        // input.style.backgroundColor = "white";
+      
     }
   }
 
@@ -80,5 +78,45 @@ function checkSolution(puzzle = "puzzle_1"){
   }
 }
 
-console.log("javascript working")
-populateSudoku("puzzle_1")
+function restartPuzzle(){
+  for(var i = 0; i<9;i++){
+    for(var j = 0; j<9; j++){
+      var cell = document.getElementById(i + "-" + j);
+      var input = cell.getElementsByClassName("input-text")[0];
+      if(!input.readOnly){
+        input.value = "";
+      }
+    }
+  }
+}
+
+// function test(){
+// for(var i = 0; i < 9; i++){
+//     for(var j = 0; j < 9; j++){
+//       var cell = document.getElementById(i + "-" + j);
+//       var input = cell.getElementsByClassName("input-text")[0];
+//       if(solvedPuzzle["solution"][i][j] != 0 ){
+//         cell.style.color = "#000000";
+//         input.value = solvedPuzzle["solution"][i][j];
+//         input.readOnly = true;
+//       } else {
+//         input.value = "";
+//         input.readOnly = false;
+//         cell.style.color = "#74D3BB";
+//       }
+//     }
+//   }
+//   }
+
+if(!document.cookie.includes("firstTime")){
+  // var audio = new Audio('popUp.mp3');
+  // audio.play();
+  document.cookie = "firstTime=false";
+  document.getElementById('id01').style.display='block';
+}
+function showInstructions(){
+  // var audio = new Audio('popUp.mp3');
+  // audio.play();
+  document.getElementById('id01').style.display='block';
+}
+  
