@@ -1,6 +1,7 @@
 var solvedPuzzle;
 
 function startNewPuzzle(){
+  document.getElementById('howToPlay').style.display = 'block';
   document.getElementById('loader').style.display = 'block';
   document.getElementById('restart-btn').style.display = 'block';
   document.getElementById('submit-btn').style.display = 'block';
@@ -81,6 +82,7 @@ function populateSolution(puzzle) {
 }
 
 function checkSolution(){
+  document.getElementById('howToPlay').style.display = 'none'
   document.getElementById('id04').style.display = 'none';
   document.getElementById('restart-btn').style.display = 'none';
   document.getElementById('submit-btn').style.display = 'none';
