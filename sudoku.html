@@ -13,7 +13,8 @@
 </head>
 <body>
 	
-	<h1 id="title" class="text-center" style="margin-bottom: 70px;"><b style="font-weight: 600; color: #7FEBD0; ">Bright</b>Sudoku</h1>
+	
+	<h1 id="title" class="text-center" style="margin-bottom: 50px;"><b style="font-weight: 600; color: #7FEBD0; ">Bright</b>Sudoku</h1>
 	<!-- <h2 class="text-center">03:15</h2> -->
 	
 	<div id="chooseDifficulty" class="difficulty text-center">
@@ -21,11 +22,11 @@
 		<input value="medium" name="difficulty" style="margin-left: 10px;" type="radio"> Medium
 		<input value="hard" name="difficulty" style="margin-left: 10px;" type="radio"> Hard
 	</div>
-
-	<div class="puzzle-wrapper" style="display: flex; margin:20px;justify-content: center;">
 	
-		<div id="puzzle-container" style="margin-right: 20px;" >
-		
+	<h2 id="feedback" class="text-center" style="font-weight: 600; "></h2>
+	<div class="puzzle-wrapper" style="display: flex; margin:20px;justify-content: center;align-items:center;">
+	
+		<div id="puzzle-container" >
 		<table>
 			<tr>
 				<td id="0-0">
@@ -289,8 +290,10 @@
 				</td>
 			</tr>
 		</table>
-		
-	</div>
+		</div>
+		<div id="loader" style=" position: fixed; display: flex; justify-content:center; background-color:rgba(57, 65, 82, 0.9);border-radius:10px;padding:10px;display:none;">
+			<div class="loader"></div>
+		</div>
 	<div id="solutionTable" class="solutionTable" style="display:none; width:500px;height:500px; margin-left: 20px;  padding:5px; background-color: white;">
 		<table>
 			<tr>
@@ -559,8 +562,8 @@
 	</div>
 	<div class="board-buttons text-center">
 		<button class="custom-btn" onclick="showChoiceStartNew()">Start new puzzle</button>
-		<button class="custom-btn" onclick="showChoice()">Restart Puzzle</button>
-		<button style="background-color: #74D3BB; color: white; font-weight: 500;" class="custom-btn" onclick="checkSolution()">Submit Puzzle</button>
+		<button id="restart-btn" class="custom-btn" onclick="showChoice()">Restart Puzzle</button>
+		<button id="submit-btn" style="background-color: #74D3BB; color: white; font-weight: 500;" class="custom-btn" onclick="showChoiceSubmit()">Submit Puzzle</button>
 	</div>
 
 	<!-- Trigger/Open the Modal -->
@@ -620,6 +623,24 @@
 					<button onclick="startNewPuzzle();" style="margin-right: 5px; background-color: #74D3BB; color: white; font-weight: 500;width:150px;height: 50px;"
 					 class="custom-btn">Yes</button>
 					<button onclick="document.getElementById('id03').style.display='none'" style="margin-left: 5px;background-color: #74D3BB; color: white; font-weight: 500;width:150px;height: 50px;"
+					 class="custom-btn">No</button>
+				</div>
+	
+			</div>
+		</div>
+	</div>
+
+	<!-- yes or no submit -->
+	<div id="id04" class="w3-modal">
+		<div id="modal-view" class="w3-modal-content w3-animate-top">
+			<div class="w3-container">
+				<span onclick="document.getElementById('id04').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+				<h2 class="text-center" style="margin-bottom: 30px;font-weight: 100;">Are you sure you want to submit puzzle?</h2>
+	
+				<div class="text-center" style="margin-bottom: 30px; display: flex;justify-content:center;">
+					<button onclick="checkSolution();" style="margin-right: 5px; background-color: #74D3BB; color: white; font-weight: 500;width:150px;height: 50px;"
+					 class="custom-btn">Yes</button>
+					<button onclick="document.getElementById('id04').style.display='none'" style="margin-left: 5px;background-color: #74D3BB; color: white; font-weight: 500;width:150px;height: 50px;"
 					 class="custom-btn">No</button>
 				</div>
 	

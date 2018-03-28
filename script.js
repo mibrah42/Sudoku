@@ -1,6 +1,10 @@
 var solvedPuzzle;
 
 function startNewPuzzle(){
+  document.getElementById('loader').style.display = 'block';
+  document.getElementById('restart-btn').style.display = 'block';
+  document.getElementById('submit-btn').style.display = 'block';
+  document.getElementById('feedback').style.display = 'none';
   document.getElementById('solutionTable').style.display = 'none';
   document.getElementById('id03').style.display = 'none'
   $('#chooseDifficulty > input').each(function () {
@@ -54,6 +58,7 @@ function populateSudoku(puzzle){
       }
     }
   }
+  document.getElementById('loader').style.display = 'none';
 }
 
 function populateSolution(puzzle) {
@@ -76,6 +81,9 @@ function populateSolution(puzzle) {
 }
 
 function checkSolution(){
+  document.getElementById('id04').style.display = 'none';
+  document.getElementById('restart-btn').style.display = 'none';
+  document.getElementById('submit-btn').style.display = 'none';
   counter = 0
   for(var i = 0; i < 9; i++){
     for(var j = 0; j < 9; j++){
@@ -93,9 +101,15 @@ function checkSolution(){
     }
   }
   if (counter > 0){
-    alert("Your solution is incorrect!");
+    document.getElementById('feedback').style.display = 'block';
+    document.getElementById('feedback').style.color = "#E26A6A";
+    document.getElementById('feedback').innerHTML = 'Your solution is Incorrect';
+    // alert("Your solution is incorrect!");
   } else {
-    alert("Your solution is correct!");
+    document.getElementById('feedback').style.display = 'block';
+    document.getElementById('feedback').style.color = "#7FEBD0";
+    document.getElementById('feedback').innerHTML = 'Your solution is Correct!';
+    // alert("Your solution is correct!");
   }
   document.getElementById('solutionTable').style.display = 'block';
 }
@@ -106,6 +120,10 @@ function showChoice(){
 
 function showChoiceStartNew(){
   document.getElementById('id03').style.display = 'block';
+}
+
+function showChoiceSubmit(){
+  document.getElementById('id04').style.display = 'block';
 }
 
 function restartPuzzle(choice){
@@ -127,12 +145,13 @@ function restartPuzzle(choice){
   // }
 }
 
-// if(!document.cookie.includes("firstTime")){
-//   // var audio = new Audio('popUp.mp3');
-//   // audio.play();
-//   document.cookie = "firstTime=false";
-//   document.getElementById('id01').style.display='block';
-// }
+if(!document.cookie.includes("firstTime")){
+  // var audio = new Audio('popUp.mp3');
+  // audio.play();
+  document.cookie = "firstTime=false";
+  document.getElementById('id01').style.display='block';
+}
+
 function showInstructions(){
   // var audio = new Audio('popUp.mp3');
   // audio.play();
