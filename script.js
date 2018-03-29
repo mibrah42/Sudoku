@@ -1,6 +1,8 @@
 var solvedPuzzle;
+startNewPuzzle()
 
 function startNewPuzzle(){
+  document.getElementById('confetti').style.display = 'none';
   document.getElementById('howToPlay').style.display = 'block';
   document.getElementById('loader').style.display = 'block';
   document.getElementById('restart-btn').style.display = 'block';
@@ -39,7 +41,7 @@ function solve(puzzle){
     });
 }
 
-startNewPuzzle()
+
 
 function populateSudoku(puzzle){
   console.log(solvedPuzzle)
@@ -109,6 +111,7 @@ function checkSolution(){
     // alert("Your solution is incorrect!");
   } else {
     document.getElementById('feedback').style.display = 'block';
+    document.getElementById('confetti').style.display = 'block';
     document.getElementById('feedback').style.color = "#7FEBD0";
     document.getElementById('feedback').innerHTML = 'Your solution is Correct!';
     // alert("Your solution is correct!");
